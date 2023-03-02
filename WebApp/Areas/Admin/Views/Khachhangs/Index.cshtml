@@ -1,0 +1,71 @@
+﻿@model IEnumerable<WebApp.Models.Khachhang>
+
+@{
+    ViewData["Title"] = "KhachhangIndex";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <span class="breadcrumb-item active">Danh sách khách hàng</span>
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover e-commerce-table">
+                <thead>
+                    <tr>
+
+
+                        <th>Họ và tên</th>
+                        <th>địa chỉ</th>
+                        <th>Điện thoại</th>
+                        <th>Email</th>
+                        <th>Ghi chú</th>
+                        <th>Dịch vụ</th>
+                        <th>Dự án</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Tenkh
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img class="img-fluid rounded" src="assets/images/others/thumb-9.jpg" style="max-width: 60px" alt="">
+                                        <h6 class="m-b-0 m-l-10">@item.Diachi</h6>
+                                    </div>
+                                </td>
+                                <td>@item.Dt</td>
+                                <td>@item.Email</td>
+                                <td>@item.Ghichu</td>
+                                <td>@item.Madichvu</td>
+                                <td>@item.Maduan</td>
+
+                                <td>
+                                    <a class="btn btn-primary btn-tone m-r-5" asp-area="Admin" asp-controller="Khachhangs" asp-action="Details" asp-route-id="@item.Makh">Chi tiết</a>
+                                    @*<a class="btn btn-secondary btn-tone m-r-5" asp-area="Admin" asp-controller="Khachhangs" asp-action="Edit" asp-route-id="@item.Makh">Sửa</a>*@
+                                    <a class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-controller="Khachhangs" asp-action="Delete" asp-route-id="@item.Makh">Xóa</a>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
